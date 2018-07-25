@@ -13,6 +13,22 @@
 安装完成之后，可以讲安装目录下的/sbin文件加入环境变量PARH，方便使用rabbitmq自带的工具   
 补充：发现加入系统环境变量，只有使用管理员权限打开powershell才能不加路径使用rabbitmqctl命令
 
+## centos7 安装
+
+[官方教程](http://www.rabbitmq.com/install-rpm.html)这个不靠谱，按下面的来
+
+首先安装无依赖版本的erlang，因为最新版的rabbitmq对berlang的版本有要求，所以需要安装较新的。
+
+注意是无依赖版本的erlang，因为在centos7上某些erlang的依赖无法被满足。下载地址：[github](https://github.com/rabbitmq/erlang-rpm)
+
+下载好这个erlang之后，yum install
+
+然后在[官方教程](http://www.rabbitmq.com/install-rpm.html)下载rabbitmq的最新版rpm包，然后yum install
+
+然后 service rabbitmq-server start开启服务。
+
+我在这个过程中遇到了启动失败的问题，解决参见[cnblogs](https://www.cnblogs.com/straycats/p/7719933.html)。方法是：删除`/var/lib/rabbitmq/mnesia`下的所有文件、文件夹。之后启动就成功了。
+
 ## rabbitmqctl命令行工具
 
 其他命令和命令详解参见[rabbitmqctl命令行工具](http://www.rabbitmq.com/rabbitmqctl.8.html)   
