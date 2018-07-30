@@ -95,7 +95,9 @@ queue队列是消息的容器，由consumer通过程序（这里是java）建立
 
 在讲exhange之前讲这样一段废话：queue由consumer创建了，但是并没有消息发送给queue。消息要发送给某一个queue，需要自己携带一个route key（路由键），通过exchange（交换机）查看自己的bindings（路由表）决定将消息发送给哪个queue。
 
-疑问？exchange也有consumer建立？
+疑问？exchange也有consumer建立？疑问确定，consumer需要注册自己的queue以及发送到该queue的exchange，以及binding。
+
+换句话说，一个实例只需要注册自己消费的那部分。发送的那部分，所需要知道的exchange及路由键不需要注册。
 
 一个binding就是一个基于route key将exchange和queue连接起来的路由规则。   
 exchange根据bindings将消息发送给queue。   
